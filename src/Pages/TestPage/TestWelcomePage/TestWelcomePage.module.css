@@ -1,0 +1,76 @@
+.container{
+    width: 100%;
+    height: 100%;
+    background: #6a3093;
+    background: -webkit-linear-gradient(to right, #6a3093, #a044ff);
+    background: linear-gradient(to top, #6a3093, #a044ff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contentContaniner{
+    width: 60%;
+    min-height: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title1{
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 15px;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.infoContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+.infoText{
+    font-size: 21px;
+    font-weight: bold;
+}
+.descContainer{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.title2{
+    font-weight: bold;
+    font-size: 21px;
+}
+.buttonContainer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startBtn{
+    width: 200px;
+    height: 50px;
+    background-color: #fff700;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+
+.startBtn:hover{
+    color: black !important;
+    border: 1px solid black !important;
+}

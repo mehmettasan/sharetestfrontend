@@ -1,0 +1,61 @@
+.container{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.quest{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.questInput{
+    width: 100%;
+    height: 120px !important;
+    font-size: 20px;
+    border-color: black;
+    resize: none !important;
+}
+.answerSection{
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.answer{
+    width: 90% !important;
+    height: 50px;
+    font-size: 20px;
+    resize: none !important;
+    border-color: black;
+}
+.countText{
+    width: 100%;
+    padding-top: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.answerItem{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+.radioItem{
+    width: 30px;
+    height: 30px;
+    accent-color: #6a3093;
+    margin: 10px;
+}

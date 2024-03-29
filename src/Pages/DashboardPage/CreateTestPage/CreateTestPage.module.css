@@ -1,0 +1,98 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 20px;
+}
+.title1{
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+.questionsContainer{
+    width: 90%;
+    min-height: 150px;
+    background-color: #e2e2e2;
+    border-radius: 20px;
+    padding: 10px;
+}
+.moreBtn{
+    text-decoration: none;
+    font-size: 50px;
+    color: #6a3093;
+    cursor: pointer;
+    margin: 10px ;
+}
+.decreaseBtn{
+    text-decoration: none;
+    font-size: 50px;
+    color: red;
+    cursor: pointer;
+    margin: 10px ;
+}
+
+.testHeader{
+    width: 90%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.testHeaderSection{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.testHeaderSection2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.testHeaderElement{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+}
+.testHeaderInput1{
+    width: 50%;
+    height: 50px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.testHeaderInput2{
+    width: 100%;
+    height: 120px;
+    color: black;
+    font-size: 20px;
+}
+
+.createButton{
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: #fff700;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.createButton:hover{
+    color: black !important;
+    border: 1px solid black !important;
+}
