@@ -55,7 +55,6 @@ const ProfilePage = () => {
         <div className={styles.title1}>Katılınan Testler</div>
         <div className={styles.testsContainer}>
         {tests.map((item) => {
-          console.log(item)
           let test = item.Answers[0]
           const counts = calculateAnswers(test.AnswerList)
           return (
