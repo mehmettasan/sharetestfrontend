@@ -111,3 +111,85 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.usersContainer{
+    width: 95%;
+    min-height: 150px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.userDetailContainer{
+    width: 95%;
+    min-height: 150px;
+    background-color: #ebebeb;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.title4{
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.blankCube{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: black;
+    width: 25px;
+    height: 25px;
+    background-color: #9ECAEF;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    margin-bottom: 2.5px;
+}
+.trueCube{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: white;
+    width: 25px;
+    height: 25px;
+    background-color: #089404;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    margin-bottom: 2.5px;
+}
+.wrongCube{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: white;
+    width: 25px;
+    height: 25px;
+    background-color: #8B0000;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    margin-bottom: 2.5px;
+}
+
+
+.cubeContainer{
+    max-width: 150px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

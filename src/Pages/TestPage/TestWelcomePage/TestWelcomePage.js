@@ -21,8 +21,6 @@ const TestWelcomePage = () => {
             userID:session,
             loginCode:testCode
         })
-        console.log(data)
-        console.log(data.test)
         setTest(data.test)
     } catch (error) {
        navigate("/dashboard")

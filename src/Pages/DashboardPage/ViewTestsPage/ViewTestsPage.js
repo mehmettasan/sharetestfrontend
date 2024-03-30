@@ -14,7 +14,7 @@ const ViewTestsPage = () => {
     const getTests = async()=>{
         const {data}= await axios.post("/test/getusersalltest",{userId:session})
         if (data.tests) {
-            setTests(data.tests)
+            setTests(arraySort(data.tests))
         }
     }
 
@@ -25,9 +25,17 @@ const ViewTestsPage = () => {
 
   return (
     <div className={styles.container}>
-        {tests.map((item)=><ViewTestItem item={item} />)}
+        {tests.map((item)=><ViewTestItem key={item._id} item={item} />)}
     </div>
   )
+}
+
+const arraySort =(arr) => {
+    let newArray = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+        newArray.push(arr[i]);
+    }
+    return newArray;
 }
 
 export default ViewTestsPage

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./TestAnswer.module.css";
 import { useAtomValue, useAtom } from "jotai";
-import { TestAtom, sessionAtom } from "../../../store/JotaiStore";
+import {
+  TestAtom,
+  sessionAtom,
+  redirectTestIDAtom,
+} from "../../../store/JotaiStore";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,14 +21,18 @@ const TestAnswer = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [redirect, setRedirect] = useAtom(redirectTestIDAtom);
 
   const handleSelect = (s) => {
     setSelected(s);
   };
 
-  const handleFinish = () => {
-    sendAnswer();
+  const handleFinish = async () => {
+    setLoading(true);
+    await sendAnswer();
+    setRedirect(test?._id);
     setTest(null);
+    setLoading(false);
     navigate("/testResult");
   };
 
@@ -43,11 +51,15 @@ const TestAnswer = () => {
     }
   };
 
-  const handleNextQuestion = () => {
-    sendAnswer();
+  const handleNextQuestion = async () => {
+    setLoading(true);
+    await sendAnswer();
+    handleTimerChange(test.time);
+    setStopTime(false);
+    setDisabled(false);
+    setLoading(false);
     setSelected("");
     setQuestCount(questCount + 1);
-    setTimer(test?.time);
   };
 
   useEffect(() => {
@@ -56,16 +68,28 @@ const TestAnswer = () => {
     }
   }, [test]);
 
-  setTimeout(() => {
-    if (!stopTime) {
-      if (timer == 0) {
-        setDisabled(true);
-        setStopTime(true);
-        setTimer(0);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (!stopTime) {
+        if (timer === 0) {
+          setDisabled(true);
+          setStopTime(true);
+          setTimer(0);
+        } else {
+          setTimer(prevTimer => prevTimer - 1);
+        }
       }
-      setTimer(timer - 1);
-    }
-  }, 1000);
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [timer, stopTime]);
+
+  const handleTimerChange = (newTimerValue) => {
+    setTimer(newTimerValue);
+    setStopTime(false);
+    setDisabled(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -74,7 +98,7 @@ const TestAnswer = () => {
           <div>
             Soru : {questCount + 1}/{test?.questions.length}
           </div>
-          <div>Kalan Süre: {timer + 1}</div>
+          <div>Kalan Süre: {timer}</div>
         </div>
         <div className={styles.questionContainer}>
           {test?.questions[questCount].question}
@@ -132,7 +156,7 @@ const TestAnswer = () => {
               {test?.questions[questCount].optionC}
             </div>
             <div
-               onClick={() => {
+              onClick={() => {
                 if (!disabled) {
                   handleSelect("d");
                 }
@@ -151,6 +175,7 @@ const TestAnswer = () => {
         </div>
         <div className={styles.btnContainer}>
           <Button
+            loading={loading}
             onClick={
               test?.questions.length == questCount + 1
                 ? handleFinish

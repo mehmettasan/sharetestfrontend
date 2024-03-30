@@ -21,7 +21,6 @@ const CreateItem = ({ id }) => {
 
   useEffect(() => {
     const question = questions.filter((item) => item.id == id)[0];
-    console.log(question)
     setCurrentQuestion(question);
   }, [questions]);
 

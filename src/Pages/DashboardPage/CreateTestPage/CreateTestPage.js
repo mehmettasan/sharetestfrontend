@@ -11,6 +11,7 @@ import {
   sessionAtom,
 } from "../../../store/JotaiStore";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 
@@ -22,6 +23,7 @@ const CreateTestPage = () => {
   const [description, setDescription] = useState("");
   const [time, setTime] = useState(10);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   const handleMoreButton = () => {
     const id = questions[questions.length - 1].id + 1;
@@ -60,6 +62,10 @@ const CreateTestPage = () => {
         trueAnswer: "a",
       },
     ]);
+    setName("")
+    setDescription("")
+    setTime(10)
+    navigate("/dashboard/viewtests/"+data.test._id)
   };
 
   const handleDecreaseBtn=()=>{

@@ -16,3 +16,4 @@ export const questionsAtom = atom([
 ]);
 
 export const TestAtom = atom(null)
+export const redirectTestIDAtom = atom(null)

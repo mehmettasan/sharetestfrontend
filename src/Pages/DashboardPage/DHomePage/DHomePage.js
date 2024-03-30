@@ -50,32 +50,26 @@ const DHomePage = () => {
           <div className={styles.digitGroup}>
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[0]}
             />
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[1]}
             />
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[2]}
             />
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[3]}
             />
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[4]}
             />
             <input
               className={styles.digitElement}
-              inputMode="decimal"
               {...digits[5]}
             />
           </div>
