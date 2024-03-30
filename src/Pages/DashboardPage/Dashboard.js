@@ -12,6 +12,8 @@ import styles from "./Dashboard.module.css";
 import { useAtom } from "jotai";
 import { sessionAtom } from "../../store/JotaiStore";
 import TestDetailPage from "./TestDetailPage/TestDetailPage";
+import ProfilePage from "./ProfilePage/ProfilePage";
+import SettingsPage from "./SettingsPage/SettingsPage";
 
 
 const Dashboard = () => {
@@ -32,7 +34,7 @@ const Dashboard = () => {
         <div className={styles.header}>
           <div className={styles.title}>SHARE TEST</div>
           <div className={styles.profileContainer}>  
-                <div className={styles.profileImage}>M</div>
+               
           </div>
         </div>
         <div className={styles.pageContainer}>
@@ -41,6 +43,8 @@ const Dashboard = () => {
             <Route path="/createtest" element={<CreateTestPage />} />
             <Route path="/viewtests" element={<ViewTestsPage />} />
             <Route path="/viewtests/:testId" element={<TestDetailPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/exit" element={<ExitPage />} />
           </Routes>
         </div>

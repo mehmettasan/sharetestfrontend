@@ -33,7 +33,7 @@ const DHomePage = () => {
     <div className={styles.container}>
       <div className={styles.createContainer}>
         <div className={styles.hpSection}>
-        <div className={styles.type2}>Bir Test Oluşturun</div>
+        <div className={styles.type2}>Test Oluşturun</div>
         <div className={styles.type1}>
           Hemen kendi testinizi oluşturun ve topluluğunuz ile paylaşın...
         </div>
@@ -45,7 +45,7 @@ const DHomePage = () => {
 
       <div className={styles.joinContainer}>
         <div className={styles.hpSection}>
-          <div className={styles.type2}>Bir Teste Katılın</div>
+          <div className={styles.type2}>Teste Katılın</div>
           <div className={styles.type1}>6 Haneli Test Kodunuzu Giriniz.</div>
           <div className={styles.digitGroup}>
             <input

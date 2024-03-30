@@ -37,13 +37,6 @@ const MenuItems=[
     url:"/dashboard/profile"
   },
   {
-    id:5,
-    name:"settings",
-    title:"Ayarlar",
-    icon:<SettingOutlined />,
-    url:"/dashboard/settings"
-  },
-  {
     id:6,
     name:"exit",
     title:"Çıkış",
