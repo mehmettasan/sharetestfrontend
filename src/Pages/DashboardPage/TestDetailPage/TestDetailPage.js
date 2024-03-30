@@ -42,8 +42,9 @@ const TestDetailPage = () => {
       const { data } = await axios.post("/test/getAllUsersTestResponses", {
         testID: testId,
       });
+      console.log(data)
       console.log(data[0].Answers);
-      setUsers(data[0].Answers);
+      setUsers(data);
     } catch (error) {}
   };
 
@@ -159,7 +160,9 @@ const TestDetailPage = () => {
       </div>
       <div className={styles.usersContainer}>
         <div className={styles.title4}>Kullanıcılar</div>
-        {users.map((user) => {
+        {users.map((item) => {
+          console.log(item[0])
+          let user = item.Answers[0]
           const counts = calculateAnswers(user.AnswerList)
           return (
             <div className={styles.userDetailContainer} key={user.UserID}>
