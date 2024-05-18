@@ -1,0 +1,134 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 20px;
+}
+.title1{
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.qcontainer{
+    width: 90%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+}
+
+.quest{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.questInput{
+    width: 100%;
+    height: 120px !important;
+    font-size: 20px;
+    border-color: black;
+    resize: none !important;
+}
+.answerSection{
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.answer{
+    width: 90% !important;
+    height: 50px;
+    font-size: 20px;
+    resize: none !important;
+    border-color: black;
+}
+.countText{
+    width: 100%;
+    padding-top: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.answerItem{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+.radioItem{
+    width: 30px;
+    height: 30px;
+    accent-color: #6a3093;
+    margin: 10px;
+}
+
+.createButton{
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: #fff700;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.createButton:hover{
+    color: black !important;
+    border: 1px solid black !important;
+}
+
+.questionCont{
+    width: 90%;
+    height: auto;
+}
+
+.questContainer{
+    width: 100%;
+    height: 100px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.closeBTN{
+    display: flex;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-top-right-radius: 15px;
+    cursor: pointer;
+}
+

@@ -22,10 +22,6 @@ const ViewTestItem = ({ item }) => {
               {item.isClosed ? "Kapalı" : "Açık"}
             </span>
           </div>
-          <div className={styles.usersContainer}>
-            <div>Katılımcılar</div>
-            <div>0</div>
-          </div>
         </div>
       </div>
     </Link>

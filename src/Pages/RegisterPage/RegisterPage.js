@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./RegisterPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Input } from "antd";
-import { UserOutlined, KeyOutlined } from "@ant-design/icons";
+import { Button, Input, message, Tooltip } from "antd";
+import {
+  UserOutlined,
+  KeyOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { useAtom } from "jotai";
 import { sessionAtom } from "../../store/JotaiStore";
 import axios from "axios";
@@ -15,18 +19,41 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(false);
+  const [emailValidate, setEmailValidate] = useState(true);
+  const [messageApi, contextHolder] = message.useMessage();
+  const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 
-  const handleRegister = async() => {
-    const user={
-      name:name,
-      email:email,
-      password:password
+  const showerr = () => {
+    messageApi.open({
+      type: "error",
+      content: "Lütfen bilgilerinizi kontrol ediniz!",
+    });
+  };
+
+  const handleRegister = async () => {
+    try {
+      if (!emailRegex.test(email)) {
+        showerr();
+        setLoading(false);
+        setErr(true);
+        return;
+      }
+      const user = {
+        name: name,
+        email: email,
+        password: password,
+      };
+      setLoading(true);
+      const { data } = await axios.post("/auth/signup", user);
+      setLoading(false);
+      setSession(data.userId);
+    } catch (error) {
+      showerr();
+      setLoading(false);
+      setErr(true);
     }
-    setLoading(true)
-    const {data}= await axios.post("/auth/signup",user)
-    setLoading(false)
-    setSession(data.userId)
   };
 
   useEffect(() => {
@@ -37,6 +64,7 @@ const RegisterPage = () => {
 
   return (
     <div className={styles.container}>
+      {contextHolder}
       <div className={styles.header}>
         <div>
           <Link to={"/"} className={styles.title}>
@@ -56,7 +84,7 @@ const RegisterPage = () => {
               placeholder="Adınızı ve Soyadınızı giriniz"
               prefix={<UserOutlined />}
               value={name}
-              onChange={(e)=>setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <div className={styles.formLabel}>e-posta</div>
             <Input
@@ -64,7 +92,22 @@ const RegisterPage = () => {
               placeholder="E-posta adresinizi giriniz"
               prefix={<UserOutlined />}
               value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmailValidate(emailRegex.test(e.target.value));
+                setEmail(e.target.value);
+              }}
+              status={!emailValidate && "error"}
+              suffix={
+                !emailValidate && (
+                  <Tooltip title="Lütfen Geçerli bir mail adresi giriniz">
+                    <InfoCircleOutlined
+                      style={{
+                        color: "rgba(255,0,0,.45)",
+                      }}
+                    />
+                  </Tooltip>
+                )
+              }
             />
             <div className={styles.formLabel}>şifre</div>
             <Input.Password
@@ -72,7 +115,7 @@ const RegisterPage = () => {
               placeholder="Şifrenizi giriniz"
               prefix={<KeyOutlined />}
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className={styles.formLabel}>şifre tekrarı</div>
             <Input.Password
@@ -80,10 +123,16 @@ const RegisterPage = () => {
               placeholder="Şifrenizi tekrar giriniz"
               prefix={<KeyOutlined />}
               value={rePassword}
-              onChange={(e)=>setRePassword(e.target.value)}
+              onChange={(e) => setRePassword(e.target.value)}
             />
             <div>
-              <Button className={styles.loginButton} type="primary" loading={loading} onClick={handleRegister} >
+              <Button
+                className={styles.loginButton}
+                type="primary"
+                loading={loading}
+                onClick={handleRegister}
+                disabled={!emailValidate}
+              >
                 Kayıt Ol
               </Button>
             </div>

@@ -5,7 +5,7 @@ import styles from "./Menu.module.css"
 import { useAtom } from 'jotai'
 import { activeMenuAtom } from '../../store/JotaiStore'
 
-import { HomeOutlined,SettingOutlined,FileTextOutlined,PoweroffOutlined,PlusSquareOutlined,UserOutlined } from '@ant-design/icons'
+import { HomeOutlined,SettingOutlined,FileTextOutlined,PoweroffOutlined,PlusSquareOutlined,UserOutlined,DatabaseOutlined } from '@ant-design/icons'
 
 const MenuItems=[
   {
@@ -31,6 +31,13 @@ const MenuItems=[
   },
   {
     id:4,
+    name:"QPool",
+    title:"Soru Havuzu",
+    icon:<DatabaseOutlined />,
+    url:"/dashboard/questionpool"
+  },
+  {
+    id:5,
     name:"profile",
     title:"Profil",
     icon:<UserOutlined />,

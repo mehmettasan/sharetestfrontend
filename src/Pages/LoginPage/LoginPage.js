@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./LoginPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Input } from "antd";
-import { UserOutlined, KeyOutlined } from "@ant-design/icons";
+import { Button, Input, message, Tooltip } from "antd";
+import {
+  UserOutlined,
+  KeyOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { sessionAtom } from "../../store/JotaiStore";
 import { useAtom } from "jotai";
 import axios from "axios";
@@ -14,6 +18,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(false);
+  const [emailValidate, setEmailValidate] = useState(true);
+  const [messageApi, contextHolder] = message.useMessage();
+  const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 
   useEffect(() => {
     if (session) {
@@ -21,19 +29,39 @@ const LoginPage = () => {
     }
   }, [session]);
 
+  const showerr = () => {
+    messageApi.open({
+      type: "error",
+      content: "E-posta veya şifre hatalı!",
+    });
+  };
+
   const handleLogin = async () => {
-    const user = {
-      email,
-      password,
-    };
-    setLoading(true);
-    const { data } = await axios.post("/auth/login", user);
-    setLoading(false);
-    setSession(data.userId);
+    try {
+      if (!emailRegex.test(email)) {
+        showerr();
+        setLoading(false);
+        setErr(true);
+        return;
+      }
+      const user = {
+        email,
+        password,
+      };
+      setLoading(true);
+      const { data } = await axios.post("/auth/login", user);
+      setLoading(false);
+      setSession(data.userId);
+    } catch (error) {
+      showerr();
+      setLoading(false);
+      setErr(true);
+    }
   };
 
   return (
     <div className={styles.container}>
+      {contextHolder}
       <div className={styles.header}>
         <div>
           <Link to={"/"} className={styles.title}>
@@ -53,7 +81,22 @@ const LoginPage = () => {
               placeholder="E-posta adresinizi giriniz"
               prefix={<UserOutlined />}
               value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmailValidate(emailRegex.test(e.target.value));
+                setEmail(e.target.value);
+              }}
+              status={!emailValidate && "error"}
+              suffix={
+                !emailValidate && (
+                  <Tooltip title="Lütfen Geçerli bir mail adresi giriniz">
+                    <InfoCircleOutlined
+                      style={{
+                        color: "rgba(255,0,0,.45)",
+                      }}
+                    />
+                  </Tooltip>
+                )
+              }
             />
             <div className={styles.formLabel}>şifre</div>
             <Input.Password
@@ -61,7 +104,7 @@ const LoginPage = () => {
               placeholder="Şifrenizi giriniz"
               prefix={<KeyOutlined />}
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className={styles.formLabel}>şifreni mi unuttun?</div>
             <div>
@@ -70,6 +113,7 @@ const LoginPage = () => {
                 type="primary"
                 onClick={handleLogin}
                 loading={loading}
+                disabled={!emailValidate}
               >
                 Giriş Yap
               </Button>

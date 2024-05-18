@@ -14,6 +14,7 @@ import { sessionAtom } from "../../store/JotaiStore";
 import TestDetailPage from "./TestDetailPage/TestDetailPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import SettingsPage from "./SettingsPage/SettingsPage";
+import QPoolPage from "./QuestionPoolPage/QPoolPage";
 
 
 const Dashboard = () => {
@@ -43,6 +44,7 @@ const Dashboard = () => {
             <Route path="/createtest" element={<CreateTestPage />} />
             <Route path="/viewtests" element={<ViewTestsPage />} />
             <Route path="/viewtests/:testId" element={<TestDetailPage />} />
+            <Route path="/questionpool" element={<QPoolPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/exit" element={<ExitPage />} />
