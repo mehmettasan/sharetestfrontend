@@ -25,20 +25,28 @@ const RegisterPage = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
 
-  const showerr = () => {
+  const showerr = (text) => {
     messageApi.open({
       type: "error",
-      content: "Lütfen bilgilerinizi kontrol ediniz!",
+      content: text,
     });
   };
 
   const handleRegister = async () => {
     try {
+      if (email==""||password==""||name==""||rePassword=="") {
+        showerr("Tüm bilgiler doldurulmalıdır!");
+        return
+      }
       if (!emailRegex.test(email)) {
-        showerr();
+        showerr("Bir hata oluştu!. Lütfen bilgilerinizi kontrol ediniz!");
         setLoading(false);
         setErr(true);
         return;
+      }
+      if (password!=rePassword) {
+        showerr("Şifreler uyuşmuyor!");
+        return
       }
       const user = {
         name: name,
@@ -117,7 +125,7 @@ const RegisterPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className={styles.formLabel}>şifre tekrarı</div>
+            <div className={styles.formLabel}>şifreyi tekrar giriniz</div>
             <Input.Password
               className={styles.formInput}
               placeholder="Şifrenizi tekrar giriniz"

@@ -79,7 +79,7 @@ const ProfilePage = () => {
                     Boş: {counts.blankCount}
                   </div>
                 </div>
-                <div className={styles.cubeContainer} style={{width:"150px"}}>
+                {/* <div className={styles.cubeContainer} style={{width:"150px"}}>
                   {test.AnswerList.map((item, index) => {
                     if (item.Answer == "e") {
                       return (
@@ -97,7 +97,7 @@ const ProfilePage = () => {
                       }
                     }
                   })}
-                </div>
+                </div> */}
               </div>
             );
           })}

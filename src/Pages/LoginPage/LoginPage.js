@@ -29,17 +29,21 @@ const LoginPage = () => {
     }
   }, [session]);
 
-  const showerr = () => {
+  const showerr = (text) => {
     messageApi.open({
       type: "error",
-      content: "E-posta veya şifre hatalı!",
+      content: text,
     });
   };
 
   const handleLogin = async () => {
     try {
+      if (email==""||password=="") {
+        showerr("E-posta ve şifre boş bırakılamaz");
+        return
+      }
       if (!emailRegex.test(email)) {
-        showerr();
+        showerr("E-posta veya şifre hatalı!");
         setLoading(false);
         setErr(true);
         return;
@@ -106,7 +110,7 @@ const LoginPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className={styles.formLabel}>şifreni mi unuttun?</div>
+            {/* <div className={styles.formLabel}>şifreni mi unuttun?</div> */}
             <div>
               <Button
                 className={styles.loginButton}

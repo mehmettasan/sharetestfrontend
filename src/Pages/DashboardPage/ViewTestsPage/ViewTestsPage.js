@@ -25,6 +25,7 @@ const ViewTestsPage = () => {
 
   return (
     <div className={styles.container}>
+        <div className={styles.pageTitle}>Oluşturduğunuz Testler</div>
         {tests.map((item)=><ViewTestItem key={item._id} item={item} />)}
     </div>
   )
