@@ -15,7 +15,7 @@ const ExitPage = () => {
 
   const handleExit = () => {
     setRedirectTestID(null)
-    TestAtom(null)
+    setTest(null)
     setQuestions([
       {
           id:1,
